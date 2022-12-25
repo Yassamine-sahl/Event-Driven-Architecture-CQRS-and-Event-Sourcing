@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Event-Driven-Architecture-CQRS-and-Event-Sourcing.iml" filepath="$PROJECT_DIR$/.idea/Event-Driven-Architecture-CQRS-and-Event-Sourcing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/compte-cqrs-ess/compte-cqrs-ess.iml" filepath="$PROJECT_DIR$/compte-cqrs-ess/compte-cqrs-ess.iml" />
+    </modules>
+  </component>
+</project>
