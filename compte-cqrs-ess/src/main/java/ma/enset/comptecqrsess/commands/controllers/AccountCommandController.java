@@ -2,7 +2,11 @@ package ma.enset.comptecqrsess.commands.controllers;
 
 import lombok.AllArgsConstructor;
 import ma.enset.comptecqrsess.commonapi.commands.CreateAccountCommand;
+import ma.enset.comptecqrsess.commonapi.commands.CreditAccountCommand;
+import ma.enset.comptecqrsess.commonapi.commands.DebitAccountCommand;
 import ma.enset.comptecqrsess.commonapi.dtos.CreateAccountRequestDTO;
+import ma.enset.comptecqrsess.commonapi.dtos.CreditAccountRequestDTO;
+import ma.enset.comptecqrsess.commonapi.dtos.DebitAccountRequestDTO;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -27,6 +31,28 @@ public class AccountCommandController {
         CompletableFuture<String> commandResponse = commandGateway.send(new CreateAccountCommand(
                 UUID.randomUUID().toString(),
                 request.getInitialBalance(),
+                request.getCurrency()
+        ));
+        return commandResponse;
+    }
+
+    //Crediter un compte
+    @PutMapping(path = "/credit")
+    public CompletableFuture<String> creditAccount(@RequestBody CreditAccountRequestDTO request){
+        CompletableFuture<String> commandResponse = commandGateway.send(new CreditAccountCommand(
+                request.getAccountId(),
+                request.getAmount(),
+                request.getCurrency()
+        ));
+        return commandResponse;
+    }
+
+    // Debiter un compte
+    @PutMapping(path = "/debit")
+    public CompletableFuture<String> debitAccount(@RequestBody DebitAccountRequestDTO request){
+        CompletableFuture<String> commandResponse = commandGateway.send(new DebitAccountCommand(
+                request.getAccountId(),
+                request.getAmount(),
                 request.getCurrency()
         ));
         return commandResponse;
